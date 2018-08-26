@@ -142,6 +142,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -195,6 +196,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:textColor="@color/colorWhite"
                     android:text="@string/btn_clear_label" />
 
             </LinearLayout>
