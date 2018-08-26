@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">IMC</string>
+    <string name="app_title">Índice de Massa Corporal (IMC)</string>
+    <string name="app_subtitle">Uma medida da gordura corporal em adultos</string>
+    <string name="lb_weight">Peso</string>
+    <string name="lb_weight_unit">Kg</string>
+    <string name="lb_height">Altura</string>
+    <string name="lb_height_unit">m</string>
+    <string name="btn_calc_label">Calcular</string>
+    <string name="btn_clear_label">Limpar</string>
+    <string name="lb_result">Resultado</string>
+    <string name="lb_result_weight">Peso ideal</string>
+    <string name="lb_result_imc">IMC</string>
+    <string name="lb_result_abstract">Interpretação</string>
+</resources>
