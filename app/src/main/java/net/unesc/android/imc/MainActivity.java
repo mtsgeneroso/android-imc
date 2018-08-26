@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView lbResultWeight;
     private TextView lbResultImc;
     private TextView lbResultAbstract;
+
+    private LinearLayout layResult;
 
     private Double heightCm;
     private Double weightKg;
@@ -41,12 +44,16 @@ public class MainActivity extends AppCompatActivity {
         lbResultWeight = findViewById(R.id.lbResultWeight);
         lbResultImc = findViewById(R.id.lbResultImc);
         lbResultAbstract = findViewById(R.id.lbResultAbstract);
+        layResult = findViewById(R.id.layResult);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         lbResultWeight.setText(preferences.getString("lb_result_weight",""));
         lbResultImc.setText(preferences.getString("lb_result_imc",""));
         lbResultAbstract.setText(preferences.getString("lb_result_abstract",""));
 
+        if(lbResultAbstract.getText().toString().isEmpty()) {
+            layResult.setVisibility(View.INVISIBLE);
+        }
 
         btnCalc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
                 edit.putString("lb_result_abstract", lbAbstract.toString());
 
                 edit.apply();
+
+                layResult.setVisibility(View.VISIBLE);
             }
         });
 
@@ -99,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 edit.remove("lb_result_abstract");
 
                 edit.apply();
+
+                layResult.setVisibility(View.INVISIBLE);
+
             }
         });
     }
