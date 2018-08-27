@@ -55,14 +55,15 @@ public class MainActivity extends AppCompatActivity {
             layResult.setVisibility(View.INVISIBLE);
         }
 
-        btnCalc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                heightM = new Double(edtHeight.getText().toString());
+        btnCalc.setOnClickListener((view) -> {
+                if(edtHeight.getText().toString().isEmpty() || edtWeight.getText().toString().isEmpty()){
+                    return;
+                }
+                heightM = Double.valueOf(edtHeight.getText().toString());
                 heightCm = heightM * 100;
-                weightKg = new Double(edtWeight.getText().toString());
+                weightKg = Double.valueOf(edtWeight.getText().toString());
 
-                weightResult = new Double((heightCm - 100) - ((heightCm - weightKg) / 4) * (5/100));
+                weightResult = (heightCm - 100) - ((heightCm - weightKg) / 4) * (5/100);
                 imc = Math.ceil(weightKg / Math.pow(heightM, 2));
 
                 lbAbstract = "";
@@ -80,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 lbResultImc.setText(imc.toString());
                 lbResultAbstract.setText(lbAbstract.toString());
 
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                SharedPreferences.Editor edit = preferences.edit();
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor edit = pref.edit();
 
                 edit.putString("lb_result_weight", weightResult.toString());
                 edit.putString("lb_result_imc", imc.toString());
@@ -90,18 +91,15 @@ public class MainActivity extends AppCompatActivity {
                 edit.apply();
 
                 layResult.setVisibility(View.VISIBLE);
-            }
-        });
+            });
 
-        btnClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnClear.setOnClickListener((view) -> {
                 lbResultAbstract.setText("");
                 lbResultImc.setText("");
                 lbResultWeight.setText("");
 
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                SharedPreferences.Editor edit = preferences.edit();
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                SharedPreferences.Editor edit = pref.edit();
 
                 edit.remove("lb_result_weight");
                 edit.remove("lb_result_imc");
@@ -111,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
                 layResult.setVisibility(View.INVISIBLE);
 
-            }
-        });
+            });
     }
 }
